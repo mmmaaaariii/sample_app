@@ -4,15 +4,23 @@ class ListsController < ApplicationController
     @list = List.new
   end
   
-  
-   def create
+  # def create
+  #   @list = List.new(list_params)
+  #   if @list.save
+  #     redirect_to list_path(@list.id)
+  #   else
+  #     @lists = List.all
+  #     render :index #<= new から indexに変更    
+  #   end
+  # end
+  def create
     @list = List.new(list_params)
     if @list.save
       redirect_to list_path(@list.id)
     else
       render :new
     end
-   end  
+  end  
   # def create
   #   #インスタンス作成：データを受け取り新規登録
   #   list = List.new(list_params)
