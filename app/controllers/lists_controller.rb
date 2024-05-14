@@ -13,14 +13,19 @@ class ListsController < ApplicationController
   #     render :index #<= new から indexに変更    
   #   end
   # end
-  def create
+ def create
+    # １. データを受け取り新規登録するためのインスタンス作成
     @list = List.new(list_params)
+    # 2. データをデータベースに保存するためのsaveメソッド実行
     if @list.save
+      flash[:notice] = "投稿に成功しました。"
       redirect_to list_path(@list.id)
     else
-      render :new
+      # 3. フラッシュメッセージを定義し、new.html.erbを描画する
+        flash.now[:alert] = "投稿に失敗しました。" #キーをalertに変更
+        render :new
     end
-  end  
+ end
   # def create
   #   #インスタンス作成：データを受け取り新規登録
   #   list = List.new(list_params)
